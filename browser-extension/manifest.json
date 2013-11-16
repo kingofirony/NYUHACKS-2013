@@ -2,21 +2,23 @@
   "manifest_version": 2,
 
   "name": "Reddit Analyzer",
-  "description": "This extension demonstrates a browser action with kittens.",
+  "description": "This extension is a reddit validity checker.",
   "version": "1.0",
+  "options_page": "/html/options.html",
  
 "permissions": [
     "https://api35.semantria.com/",        
+    "http://www.reddit.com/",
     "tabs",
      "<all_urls>",
      "storage"        
   ],
 
-
   "browser_action": {
     "default_icon": "/static/icon.png",
     "default_popup": "/html/popup.html"
   },
+
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "js": ["js/semantria-api.js","js/SemantriaJavaScriptSDK.js"]
