@@ -31,37 +31,6 @@ var json = (function () {
 })();
 
 var comments = [];
-/*function pushComments(data) {
-    if (data.kind === "more")
-	break;
-    else {
-	console.log(data.children);
-	for (i = 0; i < data.children.length; i++) {
-            comments.push(data.children[i]);
-	    if (data.children[i].data.replies)
-		pushComments(data.children[i].data.replies.data);
-	}
-    }
-}*/
-/*function pushComments(child) {
-    comments.push(child.data.body);
-    if (child.data.body.replies)*/
-/*function pushComments(child) {
-    if (child.kind === "Listing") {
-	for (i = 0; i < child.data.children.length-1; i++)
-	    pushComments(child.data.children[i]);
-    }
-    if (child.kind === "more")
-	return;
-    if (child.kind === "t1") {
-	console.log(child.data.body);
-	comments.push(child.data.body);
-	if (child.data.replies) {
-	    for (i = 0; i < child.data.replies.data.children.length; i++)
-		pushComments(child.data.replies.data.children[i]);
-	}
-    }
-}*/
 
 for (j = 0; j < json[1].data.children.length; j++){
     comments.push(json[1].data.children[j].data.body);
