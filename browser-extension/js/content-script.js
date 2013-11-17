@@ -14,7 +14,8 @@ function setBoxData(data){
     for (j=0;j<data[1].data.children.length;j++)
 	{
 	    comments.push(data[1].data.children[j].data.body);
-	    if(j>8){
+
+	    if(j>10){
 		break;
 	    }
 
@@ -62,7 +63,7 @@ function  summation(comments){
 
     $("#popup").text("Calculating entiment"); 
     for(i = 0;i<comments.length;i++){
-	sum = sum + parseFloat(comments[i].sentiment + "");
+	sum = sum + parseFloat(comments[i].sentiment);
     }
 
     sentiment = sum;
@@ -77,6 +78,8 @@ function  summation(comments){
 
 function hoverHandler(){
 
+    var now = new Date();
+    var start = now.getTime() - 1000;
     var x = $('<div/>', {
 	    id: 'popup',
 	    rel: 'external',
@@ -99,17 +102,23 @@ x.css("-webkit-box-shadow", "0px 0px 5px 1px rgba(164, 164, 164, 1)");
 x.css("box-shadow", "0px 0px 5px 1px rgba(164, 164, 164, 1)");
 
 $('a.comments').hover(function(){
-		x.appendTo(this);
-                
-	$('a.comments').mousemove(function(e){
-		x.css({left:e.pageX, top:e.pageY});
-	    });
-	
 
+	curr = new Date();
+	time = curr.getTime();
+	if ( (time - start) > 1200 ) {
 
-	
-	getComments(URL + ".json", setBoxData);
+	    start = time;
+	    
+	    x.appendTo(this);
+	    
+	    $('a.comments').mousemove(function(e){
+		    x.css({left:e.pageX, top:e.pageY});
+		});
 
+	    var URL = $(this).attr('href');
+	    getComments(URL + ".json", setBoxData);
+	    
+	}
 
     });
 

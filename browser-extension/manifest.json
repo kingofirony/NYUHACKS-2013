@@ -1,26 +1,29 @@
 {
   "manifest_version": 2,
 
-  "name": "Reddit Analyzer",
-  "description": "This extension is a reddit validity checker.",
+  "name": "Reddit Sentiment Analyzer",
+  "description": "This extension is a reddit sentiment analyzer",
   "version": "1.0",
   "options_page": "/html/options.html",
- 
+
 "permissions": [
     "https://api35.semantria.com/",        
     "http://www.reddit.com/",
-    "tabs",
-     "<all_urls>",
-     "storage"        
+    "tabs","http://reddit.com/*"
   ],
 
   "browser_action": {
     "default_icon": "/static/icon.png",
     "default_popup": "/html/popup.html"
   },
-
+"web_accessible_resources": [	
+  "js/jquery-2.0.3.min.map"
+  ],			        
+  
   "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": ["js/semantria-api.js","js/SemantriaJavaScriptSDK.js"]
-  }]
+
+  "matches": ["http://www.reddit.com/*","https://www.reddit.com/*"],
+    "js": ["js/jquery.js","js/reddit-api.js","js/SemantriaJavaScriptSDK.js","js/semantria-api.js","js/content-script.js"]
+    
+ }]
 }

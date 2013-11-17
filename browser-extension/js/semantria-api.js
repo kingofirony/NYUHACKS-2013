@@ -1,5 +1,5 @@
-var API_KEY = "72699fbc-09f6-4ac6-adb9-7dd07739a9d9";
-var API_SECRET = "4905c1ba-0b2a-4eb0-ba11-24ffdedfc250";
+var API_KEY = "2ec1c27e-d13f-45c8-9d2e-3f869784c6a7";
+var API_SECRET = "7aa23a9b-8495-49ae-8e53-cb65c6443552";
 
 SemantriaActiveSession = new Semantria.Session(API_KEY, API_SECRET, "Reddit Analyzer");
 
@@ -59,7 +59,7 @@ function receiveResponse(entitiesCount,callback) {
 		clearInterval(timeout);
 		processResponse(analyticData,callback);
 	    } 
-	}, 3000);
+	}, 2000);
 }
 
 function getSemanticsFromComments(comments,callback){
