@@ -26,6 +26,8 @@ $(document).ready(function()
 			x.css({left:e.pageX, top:e.pageY});
 		});
 		
+		var URL = $('a.comments').attr('href');
+		
 	});
 	
 	$('a.comments').mouseleave(function(){
