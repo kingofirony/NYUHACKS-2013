@@ -1,14 +1,18 @@
 $(document).ready(function()
 {
+		var sentiment = 1
 		var x = jQuery('<div/>', {
 		id: 'foo',
 		rel: 'external',
-		text: 'I did the thing.'
+		text: 'Sentiment score: ' + sentiment
 		});
 		
 		x.css("font-family", "Verdana");
 		x.css("padding", "10px");
-		x.css("background","#EEEFEB");
+		if (sentiment > 0)
+			x.css("background","#68E038");
+		else
+			x.css("background","#F20A0A");
 		x.css("margin","0px");
 		x.css("color","black");
 		x.css("border","2px");
