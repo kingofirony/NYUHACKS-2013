@@ -29,7 +29,7 @@ SemantriaActiveSession.override({
 	}
     });
 
-function processResponse(analyticData) {
+function processResponse(analyticData,callback) {
     var commentSentiments = [];
     
     for(var i=0, data;data=analyticData[i];i++) {
@@ -39,13 +39,13 @@ function processResponse(analyticData) {
 	var sentiment = SemantriaActiveSession.tpl("{sentiment_score}", data);
 	
 	commentSentiments.push(new comment(id,sentiment));
-	setBoxContents(commentSentiments);
+
     }
-    
+	callback(commentSentiments);    
 }
 
 
-function receiveResponse(entitiesCount) {
+function receiveResponse(entitiesCount,callback) {
     var analyticData = [];
     var timeout = setInterval(function() {
 	    console.log("Retrieving your processed results...");
@@ -57,12 +57,14 @@ function receiveResponse(entitiesCount) {
 	    
 	    if(analyticData.length == entitiesCount) {
 		clearInterval(timeout);
-		processResponse(analyticData);
+		processResponse(analyticData,callback);
 	    } 
-	}, 2000);
+	}, 3000);
 }
 
-function getSemanticsFromComments(comments){
+function getSemanticsFromComments(comments,callback){
+
+
     for(var i=0,text; text=comments[i]; i++) {
 	// Creates a sample document which need to be processed on Semantria
 	var id = Math.floor(Math.random() * 10000000);
@@ -77,14 +79,10 @@ function getSemanticsFromComments(comments){
 	    console.log("Document# " + id + " queued successfully");
 	}
     }
-    
-    receiveResponse(comments.length);
+    receiveResponse(comments.length,callback);
 }
 
 
 
-function setBoxContents(comments){
-    //Temporaryf iller for setting the box contents.
-    alert("id: " + comments[0].id + "\nSentiment: " + comments[0].sentiment);
-}
+
 

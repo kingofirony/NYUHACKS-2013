@@ -16,22 +16,26 @@ TODO: Fix the function to
 get ALL comments.
 ========================*/
 
-var json = (function () {
-    var json = null;
+function getComments (url,callback) {
     $.ajax({
         'async': false,
         'global': false,
-        'url': 'http://www.reddit.com/r/gaming/comments/1qr9u7/what_terrifying_controls_meant_13_years_ago/.json',
+	    'url': url,
         'dataType': "json",
         'success': function (data) {
-            json = data;
-        }
-    });
-    return json;
-})();
+	    callback(data);
+	}
+	});
 
+};
+
+function constructCommentArray(data){
 var comments = [];
 
-for (j = 0; j < json[1].data.children.length; j++){
-    comments.push(json[1].data.children[j].data.body);
+for (j = 0; j < data[1].data.children.length; j++){
+    comments.push(data[1].data.children[j].data.body);
+}
+
+return comments;
+ 
 }
